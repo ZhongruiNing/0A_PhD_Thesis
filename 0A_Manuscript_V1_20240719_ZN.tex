@@ -1,0 +1,89 @@
+% !Tex root = 0A_Manuscript_V1_20240719_ZN.tex
+
+%% 默认博士论文模板 doctor
+
+\documentclass[doctor]{hhuthesis}
+
+%% 模板选项：本科毕业论文bachelor；学术型硕士论文academicmaster；专业学位硕士论文professionalmaster；非全日制专业学位论文nonfulltimemaster；博士论文doctor
+
+%% 更改数学字体设置，Latin Modern Math 默认的有点细，可选用下列宏包
+\usepackage[bold-style=ISO]{unicode-math}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}
+% \setmathfont{TeX Gyre Termes Math}
+
+%% 将所有的ref、cite和超链接修改为蓝色
+\usepackage{xcolor}
+\let\oldref\ref
+\let\oldref\cite
+\renewcommand{\ref}[1]{\textcolor{blue}{\oldref{#1}}}
+\renewcommand{\cite}[1]{\textcolor{blue}{\oldref{#1}}}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\begin{document}
+
+%% 修改公式中的字体
+
+
+% 封面
+% \input{chapters/0_cover}
+
+% %%
+% %% 前置部分
+% %%
+% \frontmatter
+
+% %% 前言，硕士论文不需要可删除
+% \input{chapters/0_preface}
+
+% %% 摘要
+% \input{chapters/0_abstract}
+
+% %% 符号对照表，可选，如不用可注释掉
+% \input{chapters/0_denotation}
+
+%% 加入目录
+\tableofcontents
+
+% %% 加入图、表索引(同时取消图表索引中章之间的垂直间隔，不需要可以注释)
+\let\origaddvspace\addvspace
+\renewcommand{\addvspace}[1]{}
+\listoffigures
+\listoftables
+\renewcommand{\addvspace}[1]{\origaddvspace{#1}}
+
+%%
+%% 正文部分
+%%
+\mainmatter
+
+
+%% 各章正文内容
+% \input{chapters/1_chap1_introduction}
+% \input{chapters/2_chap2_data}
+\input{chapters/3_chap3_runoff_change}
+% \input{chapters/4_chap4_model_compare}
+% \input{chapters/5_chap5_params_regionalization}
+% \input{chapters/6_chap6_natural_runoff}
+
+%% 参考文献样式设定
+\bibliographystyle{reference/hhuthesis-numeric}		% 顺序编码式
+%% 参考文献，10号字，使用 BibTeX，包含参考文献文件.bib
+% \bibliographystyle{reference/hhuthesis-numeric.bst} %
+\bibliography{reference/thesis}
+
+%%
+%% 后置部分 
+%% 
+
+%% (其后部分无编号)
+% \backmatter
+
+%% 致谢
+% \input{chapters/acknowledgement}
+
+%% 附录
+% \input{chapters/resume}
+
+\end{document}
